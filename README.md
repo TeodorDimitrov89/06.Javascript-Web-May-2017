@@ -6,4 +6,4 @@
 
     #03. Angular 2 Fundamentals - July 2017
 
-Ecma script 6
+    Ecma script 6
