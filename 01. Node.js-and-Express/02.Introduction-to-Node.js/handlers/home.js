@@ -22,7 +22,9 @@ module.exports = (req, res) => {
       let allProduct = database.getAll()
       if (queryData.query) {
         allProduct = allProduct.filter(prod => {
-          return prod.name.indexOf(queryData.query) !== -1 || prod.description.indexOf(queryData.query) !== -1
+          if (prod.name.toLowerCase().indexOf(queryData.query.toLowerCase()) !== -1 || prod.description.toLowerCase().indexOf(queryData.query.toLowerCase()) !== -1) {
+            return prod.name
+          }
         })
       }
       res.writeHead(200, {'Content-Type': 'text/html'})

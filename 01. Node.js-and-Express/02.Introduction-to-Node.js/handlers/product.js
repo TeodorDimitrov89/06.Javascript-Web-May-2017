@@ -27,13 +27,6 @@ module.exports = (req, res) => {
     })
     req.on('end', () => {
       let parsedBody = query.parse(body)
-      // let product = database.products
-      // product = {
-      //   name: parsedBody.name,
-      //   description: parsedBody.description,
-      //   price: parsedBody.price,
-      //   image: parsedBody.image
-      // }
       database.products.add(parsedBody)
       fs.readFile('./views/home/index.ejs', (err, data) => {
         if (err) {
