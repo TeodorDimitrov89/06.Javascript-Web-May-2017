@@ -21,9 +21,9 @@ module.exports = (req, res) => {
       data = data.toString()
       let allProduct = database.getAll()
       if (queryData.query) {
-        allProduct = allProduct.filter(prod => {
-          if (prod.name.toLowerCase().indexOf(queryData.query.toLowerCase()) !== -1 || prod.description.toLowerCase().indexOf(queryData.query.toLowerCase()) !== -1) {
-            return prod.name
+        allProduct = allProduct.filter(product => {
+          if (product.name.toLowerCase().indexOf(queryData.query.toLowerCase()) !== -1 || product.description.toLowerCase().indexOf(queryData.query.toLowerCase()) !== -1) {
+            return product.name
           }
         })
       }
