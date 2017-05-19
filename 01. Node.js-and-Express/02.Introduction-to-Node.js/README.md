@@ -1,3 +1,4 @@
+Shop Stop Simple Site
 1. Table of Contents
 	Part I - Laying the Project Fundamentals
 	Part II – Using Third-Party Modules
