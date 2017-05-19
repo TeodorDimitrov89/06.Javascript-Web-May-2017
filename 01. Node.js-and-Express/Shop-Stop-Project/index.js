@@ -1,5 +1,5 @@
 const http = require('http')
-const port = 3000
+const port = 4000
 let handlers = require('./handlers')
 let server = http.createServer((req, res) => {
   for (let handler of handlers) {
@@ -9,6 +9,7 @@ let server = http.createServer((req, res) => {
     }
   }
 })
+
 server.listen(port, () => {
   console.log(`Server is listening on port ${port}`)
 })

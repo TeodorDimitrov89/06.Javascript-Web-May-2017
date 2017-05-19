@@ -19,17 +19,18 @@ module.exports = (req, res) => {
       }
       let queryData = query.parse(url.parse(req.url).query)
       data = data.toString()
-      let allProduct = database.getAll()
-      if (queryData.query) {
-        allProduct = allProduct.filter(product => {
-          if (product.name.toLowerCase().indexOf(queryData.query.toLowerCase()) !== -1 || product.description.toLowerCase().indexOf(queryData.query.toLowerCase()) !== -1) {
-            return product.name
-          }
-        })
-      }
-      res.writeHead(200, {'Content-Type': 'text/html'})
-      res.write(jsTemplate.render(data, {obj: allProduct}))
-      res.end()
+      let allProduct = database.products.getAll()
+      allProduct.then((products) => {
+        products = JSON.parse(products) // I need to use JSON.Parse because in this time product is a buffer
+        if (queryData.query) {
+          let queryString = queryData.query
+          products = database.findByNameOrDescription(products, queryString) // Filter product by name or description
+        }
+        res.writeHead(200, {'Content-Type': 'text/html'})
+        res.write(jsTemplate.render(data, {obj: products}))
+        // data .ejs file. The products is the array of objects
+        res.end()
+      })
     })
   } else {
     continueWithNextHandler = true
