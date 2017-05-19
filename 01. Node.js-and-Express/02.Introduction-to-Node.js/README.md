@@ -1,14 +1,16 @@
 Shop Stop Simple Site
+
 1. Table of Contents
-	Part I - Laying the Project Fundamentals
+
+		Part I - Laying the Project Fundamentals
 	
-	Part II – Using Third-Party Modules
+		Part II – Using Third-Party Modules
 	
-	Part III – Defining Database Models and Relations
+		Part III – Defining Database Models and Relations
 	
-	Part IV – Advanced Functionality 
+		Part IV – Advanced Functionality 
 	
-	Part V – User Authentication
+		Part V – User Authentication
 	
 2. Project Specification
 Design and implement a “Shop Stop” web application (containing routing and multiple web pages) using HTML5, CSS3 and Node.js. It must contain the following functionality:
@@ -73,31 +75,31 @@ There will be different views which are displayed based on the routing (the URL)
 	
 6. User
 
-	Username – string which is required and unique
+		Username – string which is required and unique
 	
-	Password – string which is required and represents the hashed value of the user's password
+		Password – string which is required and represents the hashed value of the user's password
 	
-	Created Products – collection of products created by given user
+		Created Products – collection of products created by given user
 	
 7. Product
 
-	Name – string which is required and unique
+		Name – string which is required and unique
 	
-	Description – string containing some additional information about the product
+		Description – string containing some additional information about the product
 	
-	Price – decimal number which is non-negative
+		Price – decimal number which is non-negative
 	
-	Creator – reference to the user who created the product
+		Creator – reference to the user who created the product
 	
-	Image Url – string containing reference to an image which displays the given product
+		Image Url – string containing reference to an image which displays the given product
 	
-	Is Bought – bool flag which is set to true whenever the user buys the product
+		Is Bought – bool flag which is set to true whenever the user buys the product
 	
-	Category – reference to the category where the current product is placed in.
+		Category – reference to the category where the current product is placed in.
 	
 8. Category
 
-	Name – string which is required and unique
+		Name – string which is required and unique
 	
-	Products – collection of all products in given category
+		Products – collection of all products in given category
 	
