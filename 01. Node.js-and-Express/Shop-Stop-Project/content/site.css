@@ -1,11 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:400,900');
+
 html, body {
   width: 100%;
   height: 100%;
 }
 
 body {
-  font-family: Lato;
+  font-family: Lato, serif;
   margin: 0;
 }
 
@@ -27,11 +28,11 @@ main {
 }
 
 .nav li:first-of-type {
-  padding-left: 0px;
+  padding-left: 0;
 }
 
 .nav li a {
-  text-decoration-line: none
+  text-decoration-line: none;
 }
 
 footer {
@@ -132,12 +133,12 @@ textarea.input-field {
 .product-card {
   box-sizing: border-box;
   padding: 10px;
-  /*width: 33%;*/
+  width: 33%;
   display: inline-block;
 }
 
 .product-img {
-  /*width: 100%;*/
+  width: 100%;
   max-width: 350px;
   max-height: 350px;
 }
@@ -146,10 +147,12 @@ textarea.input-field {
   display: flex;
   align-content: flex-start;
   flex-wrap: wrap;
+  margin-top: 50px;
+  padding-left: 10px;
 }
 
 #search-form {
-  padding: 10px 10px 10px 0px;
+  padding: 10px 10px 10px 0;
 }
 
 #add-category-form {
@@ -166,7 +169,7 @@ textarea.input-field {
 }
 
 .error-msg, .success-msg {
-  margin-top: 0px;
+  margin-top: 0;
   text-align: center;
 }
 
@@ -179,7 +182,7 @@ textarea.input-field {
 }
 
 .align-right {
-  float: right
+  float: right;
 }
 
 footer {

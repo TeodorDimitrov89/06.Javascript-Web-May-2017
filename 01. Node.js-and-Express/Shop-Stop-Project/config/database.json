@@ -1,16 +1,23 @@
 [
   {
-    "name": "Продукт е това",
-    "description": "Продукт е това",
-    "price": "21312",
-    "image": "content\\images\\rkm6Gr2eWimg.png",
+    "name": "HP OMEN 17-w207ng-1DL18EA 43.9 cm (17.3\") Notebook (schwarz)",
+    "description": "43.9 cm (17.3\"), Windows 10 Home\r\nDisplay: 3840 x 2160, matt\r\nIntel Core i7-7700HQ 4x 2.80 GHz\r\nNVIDIA GeForce® GTX 1050 Ti 4.0 GB\r\n16 GB RAM, 256 GB SSD, 1.0 TB HDD\r\n3x USB 3.0, WLAN",
+    "price": "1.550",
+    "image": "content\\images\\HkQzKPplWlaptop-3.jpg",
     "id": 1
   },
   {
-    "name": "нвадсадас",
-    "description": "дсадвяевя",
-    "price": "23123",
-    "image": "",
+    "name": "Acer Aspire VN7-793G-5811 43.9 cm (17.3\") Notebook (schwarz)",
+    "description": "43.9 cm (17.3\"), Linux\r\nDisplay: 1920 x 1080, matt\r\nIntel Core i5-7300HQ 4x 2.50 GHz\r\nNVIDIA GeForce® GTX 1050 Ti 4.0 GB\r\n8 GB RAM, 1.0 TB HDD\r\n1x Thunderbolt 3, 2x USB 3.0, 1x USB 2.0, WLAN",
+    "price": "1095",
+    "image": "content\\images\\rJsatvpl-acer-aspire-2.jpg",
     "id": 2
+  },
+  {
+    "name": "ASUS ROG G752VT",
+    "description": "The ROG G752VT runs on the latest Intel Core i7-6700HQ 6th gen processor, loaded 3 GB NVIDIA GTX970m graphics processor, available with thunderbolt and USB3.1.",
+    "price": "99990.00",
+    "image": "content\\images\\Syo3NdTlWASUS_ROG_G752VT_L_1.jpg",
+    "id": 3
   }
 ]
