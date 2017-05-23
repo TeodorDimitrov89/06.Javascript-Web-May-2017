@@ -19,5 +19,12 @@
     "price": "99990.00",
     "image": "content\\images\\Syo3NdTlWASUS_ROG_G752VT_L_1.jpg",
     "id": 3
+  },
+  {
+    "name": "now product",
+    "description": "now product",
+    "price": "111",
+    "image": "content\\images\\SyBOiOgW-laptop-3.jpg",
+    "id": 4
   }
 ]
