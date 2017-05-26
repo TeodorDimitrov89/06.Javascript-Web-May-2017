@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Image Details</title>
+    {{>style}}
+</head>
+<body>
+{{>menu}}
+<h2>Image Details</h2>
+<ul>
+    <li>Image Name: {{name}}</li>
+    <li><img src="../../{{imagePath}}" alt=""></li>
+    <li><a href="/details/downloads/{{id}}" >Download</a></li>
+
+</ul>
+</body>
+</html>

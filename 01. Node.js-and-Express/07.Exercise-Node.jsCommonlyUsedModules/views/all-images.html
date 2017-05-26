@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Images</title>
+    {{>style}}
+</head>
+<body>
+{{>menu}}
+<h2>Welcome to Image Lists</h2>
+{{#images}}
+<ul>
+    <li>Image Name: {{name}}</li>
+    <li><img src="{{imagePath}}" alt="{{name}}"></li>
+    <li><a href="/images/details/{{id}}">Details</a></li>
+</ul>
+{{/images}}
+
+</body>
+</html>

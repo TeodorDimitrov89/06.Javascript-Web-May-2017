@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Form</title>
+    {{>style}}
+</head>
+<body>
+{{>menu}}
+<form method="POST" class="image-form" enctype="multipart/form-data" >
+    <label>Enter name:
+        <input type="text" name="name">
+    </label>
+    <label>Upload File:
+        <input type="file" name="upload">
+    </label>
+    <label>Private or Public?
+        <input type="checkbox" value="true" name="private">
+    </label>
+    <input type="submit" value="add image">
+</form>
+</body>
+</html>
