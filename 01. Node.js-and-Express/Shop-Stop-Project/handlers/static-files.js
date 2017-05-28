@@ -1,6 +1,4 @@
-const fs = require('fs')
-const url = require('url')
-const path = require('path')
+const allModules = require('../custom_modules/all-needed-modules')
 
 function getContentType (url) {
   let contentType = { 'Content-Type': 'text/plain' }
@@ -15,17 +13,13 @@ function getContentType (url) {
 }
 
 module.exports = (req, res) => {
-  req.pathname = req.pathname || url.parse(req.url).pathname
+  req.pathname = req.pathname || allModules.url.parse(req.url).pathname
   let continueWithNextHandler = false
   if (req.pathname.startsWith('/content/') && req.method === 'GET') {
-    let filePath = path.normalize(path.join(__dirname, `..${req.pathname}`))
-    fs.readFile(filePath, (err, data) => {
+    let filePath = allModules.path.normalize(allModules.path.join(__dirname, `..${req.pathname}`))
+    allModules.fs.readFile(filePath, (err, data) => {
       if (err) {
-        res.writeHead(404, {
-          'Content-Type': 'text/plain'
-        })
-        res.write('Resource not found!')
-        res.end()
+        allModules.errorHandler.error404(res, 'Resource not found!')
         return
       }
       let contentType = getContentType(req.pathname)
