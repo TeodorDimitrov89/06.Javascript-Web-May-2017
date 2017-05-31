@@ -107,7 +107,7 @@ module.exports.delGet = (req, res) => {
   Product
     .findById(id)
     .then(product => {
-      res.render('products/delete', { product: product })
+      res.render('products/delete', {product: product})
     })
 }
 
@@ -119,6 +119,7 @@ module.exports.delPost = (req, res) => {
       Category
         .findById(currentProduct.category)
         .then(currentCategory => {
+          let imagePath = currentProduct.image
           let index = currentCategory.products.indexOf(productId)
           if (index >= 0) {
             currentCategory.products.splice(index, 1)
@@ -127,7 +128,10 @@ module.exports.delPost = (req, res) => {
           Product
             .findByIdAndRemove(productId)
             .then(() => {
-              res.redirect('/')
+              allModules.fs.unlink(allModules.path.join('.', imagePath), () => {
+                res.redirect('/?success=' +
+                  encodeURIComponent('Product was deleted successfully'))
+              })
             })
         })
     })
