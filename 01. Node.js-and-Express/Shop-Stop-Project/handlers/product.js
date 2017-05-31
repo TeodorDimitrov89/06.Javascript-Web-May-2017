@@ -1,75 +1,134 @@
 const allModules = require('../custom_modules/all-needed-modules')
 const Product = require('../models/Product')
 const Category = require('../models/Category')
-let pathFile = allModules.path.normalize(allModules.path.join(__dirname, '../views/products/add.ejs'))
-module.exports = (req, res) => {
-  req.pathname = req.pathname || allModules.url.parse(req.url).pathname
-  let continueWithNextHandle = false
-  if (req.pathname === '/product/add' && req.method === 'GET') {
-    allModules.fs.readFile(pathFile, (err, data) => {
-      if (err) {
-        allModules.errorHandler.error404(res, 'Page not Found!')
+
+module.exports.addGet = (req, res) => {
+  let pathFile = allModules.path.normalize(allModules.path.join(__dirname, '../views/products/add.pug'))
+  allModules.fs.readFile(pathFile, (err, data) => {
+    if (err) {
+      allModules.errorHandler.error404(res, 'Page not Found!')
+      return
+    }
+    Category.find()
+      .then((categories) => {
+        res.render('products/add', {categories: categories})
+        res.end()
+      })
+  })
+}
+
+module.exports.addPost = (req, res) => {
+  let productObj = req.body // Should return object key -> value
+  productObj.image = '\\' + req.file.path
+  Product.create(productObj)
+    .then((product) => {
+      Category
+        .findById(productObj.category)
+        .then(category => {
+          category.products.push(product._id)
+          category.save()
+        })
+      res.redirect('/')
+      res.end()
+    })
+}
+
+module.exports.editGet = (req, res) => {
+  let productId = req.params.id
+  Product
+    .findById(productId)
+    .then(product => {
+      if (!product) {
+        res.sendStatus(404)
         return
       }
-      Category
-        .find()
-        .then((category) => {
-          res.writeHead(200, {'Content-Type': 'text/html'})
-          data = data.toString()
-          res.write(allModules.ejsTemplate.render(data, { categories: category }))
-          res.end()
-        })
-    })
-  } else if (req.pathname === '/product/add' && req.method === 'POST') {
-    let form = new allModules.multiparty.Form()
-    let product = {}
-    form.on('part', (part) => {
-      if (part.filename) {
-        let fileName = allModules.shortid.generate()
-        let filePath = allModules.path.normalize(allModules.path.join('./content/images', fileName + part.filename))
-        let bodyFile = ''
-        part.setEncoding('binary')
-        part.on('data', (file) => {
-          bodyFile += file
-        })
-        part.on('end', () => {
-          product.image = filePath
-          allModules.fs.writeFile(filePath, bodyFile, 'binary', (err) => {
-            if (err) {
-              allModules.errorHandler.throwError(err)
-            }
+      Category.find()
+        .then((categories) => {
+          res.render('products/edit', {
+            product: product,
+            categories: categories
           })
         })
+    })
+}
+
+module.exports.editPost = (req, res) => {
+  console.log(req.body)
+  let productId = req.params.id
+  let editedProduct = req.body
+  Product
+    .findById(productId)
+    .then(product => {
+      if (!product) {
+        res.redirect(`/?error=${encodeURIComponent('error=Product was not found!')}`)
+        return
+      }
+      product.name = editedProduct.name
+      product.description = editedProduct.description
+      product.price = editedProduct.price
+      if (req.file) {
+        product.image = '\\' + req.file.path
+      }
+      let categoryId = editedProduct.category
+      if (product.category !== categoryId) {
+        Category
+          .findById(product.category)
+          .then(currentCategory => {
+            Category
+              .findById(categoryId)
+              .then(newCategory => {
+                let index = currentCategory.products.indexOf(product._id)
+                if (index >= 0) {
+                  currentCategory.products.splice(index, 1)
+                }
+                currentCategory.save()
+                newCategory.products.push(product._id)
+                newCategory.save()
+                product.category = editedProduct.category
+                product.save()
+                  .then(() => {
+                    res.redirect('/?success=' +
+                      encodeURIComponent('Product was edited successfully'))
+                  })
+              })
+          })
       } else {
-        let bodyFile = ''
-        part.setEncoding('utf-8')
-        part.on('data', (data) => {
-          bodyFile += data
-        })
-        part.on('end', () => {
-          product[part.name] = bodyFile
-        })
+        product.save()
+          .then(() => {
+            res.redirect('/?success=' +
+              encodeURIComponent('Product was edited successfully'))
+          })
       }
     })
-    form.on('close', () => {
-      Product
-        .create(product)
-        .then((insertedProduct) => {
-          Category
-            .findById(product.category)
-            .then(category => {
-              category.products.push(insertedProduct._id)
-              category.save()
+}
+
+module.exports.delGet = (req, res) => {
+  let id = req.params.id
+  Product
+    .findById(id)
+    .then(product => {
+      res.render('products/delete', { product: product })
+    })
+}
+
+module.exports.delPost = (req, res) => {
+  let productId = req.params.id
+  Product
+    .findById(productId)
+    .then(currentProduct => {
+      Category
+        .findById(currentProduct.category)
+        .then(currentCategory => {
+          let index = currentCategory.products.indexOf(productId)
+          if (index >= 0) {
+            currentCategory.products.splice(index, 1)
+          }
+          currentCategory.save()
+          Product
+            .findByIdAndRemove(productId)
+            .then(() => {
+              res.redirect('/')
             })
-          res.writeHead(302, {
-            'Location': '/'
-          })
-          res.end()
         })
     })
-    form.parse(req)
-  } else {
-    continueWithNextHandle = true
-    return continueWithNextHandle
-  }
 }
