@@ -1,0 +1,24 @@
+extends ../main
+block content
+  .jumbotron
+        h1 Change or Add Role
+        table.table.table-hover.table-responsive
+          thead
+            tr
+              th Users
+              th Role
+              th Change Role
+          each user in users
+            tr
+              td=user.username
+              td=user.roles[0]
+              td
+                form(action='/admins/add', method='post')
+                  input(type='hidden', name='id' value=`${user._id}`)
+                  select(name='role', id='lstSelect')
+                    option(value='Admin') Admin
+                    option(value='User')  User
+                  input(type='submit', value='Change Role / Add Role')
+
+
+        

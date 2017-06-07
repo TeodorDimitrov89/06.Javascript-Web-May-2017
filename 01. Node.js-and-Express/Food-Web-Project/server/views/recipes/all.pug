@@ -1,0 +1,14 @@
+extends ../main.pug
+block content
+  h2 All Recipe
+  .row
+    each recipe in recipes
+      .col
+        a(href='/recipe/details/' + recipe._id)
+        img.recipe-img(src=`/${recipe.image}`)
+        h2=recipe.name
+        p=recipe.description
+        a.btn.btn-warning(href='/recipe/edit/'+ recipe._id)= 'Edit'
+        a.btn.btn-danger(href='/recipe/delete/' + recipe._id)= 'Delete'
+        a.btn.btn-success(href='/recipe/details/' + recipe._id)= 'Details'
+        a.btn.btn-info(href=`/category/${recipe.category.name}/recipe`)= `More ${recipe.category.name}`

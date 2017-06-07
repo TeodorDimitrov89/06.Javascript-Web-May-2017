@@ -1,0 +1,15 @@
+extends ../main.pug
+block content
+  h2 Recipe Details
+  .row
+    .col
+      img(src=`/${recipe.image}`)
+      h2=recipe.name
+      p=recipe.description
+      a.btn.btn-warning(href='/recipe/edit/'+ recipe._id)= 'Edit'
+      a.btn.btn-danger(href='/recipe/delete/' + recipe._id)= 'Delete'
+      a.btn.btn-info(href='/comment/addComment/' + recipe._id)= 'Add Comment'
+    each comment in comments
+      div=comment.author
+      p=comment.comment
+      p=comment.date

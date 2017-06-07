@@ -1,0 +1,10 @@
+const express = require('express')
+const config = require('./server/config/config')
+let environment = process.env.NODE_ENV || 'development'
+const app = express()
+require('./server/config/database.settings')(config[environment])
+require('./server/config/express')(app, config[environment])
+require('./server/config/routes')(app)
+require('./server/config/passport')()
+app.listen(`${config[environment].port}`)
+console.log(`Server is listening on ${config[environment].port}`)

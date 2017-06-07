@@ -1,0 +1,22 @@
+extends ../main.pug
+
+block content
+    form.form.center-form(method='post', enctype='multipart/form-data')
+        h2 Add Product
+        .form-group
+            label(for='name') Name
+            input#name.input-field(name='name', type='text')
+        .form-group.description
+            label(for='description') Description
+            textarea.form-control(name='description', type='text', rows="4" cols="10")
+        .form-group
+            label.custom-file(for='image') Image
+                input.custom-file-input(name='image', type='file', id='file' accept='.jpg,.jpeg,.png')
+                span.custom-file-control
+        .form-group
+            label(for='description') Group
+            select.form-control.custom-select(name='category')
+                each category in categories
+                    option(value=`${category._id}`)=category.name
+        .form-group
+            input.btn.btn-primary.btn-lg(type='submit', value='Add')

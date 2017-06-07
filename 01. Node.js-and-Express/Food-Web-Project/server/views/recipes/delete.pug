@@ -1,0 +1,25 @@
+extends ../main.pug
+
+block content
+  h2 Delete Recipe
+    form(method='post', enctype='multipart/form-data')
+      img(src=`/${recipe.image}`)
+      br
+      br
+      label Name
+      br
+      input(type='text', name='name' disabled, value=recipe.name)
+      br
+      br
+      label Description
+      br
+      textarea(name='description' disabled)= recipe.description
+      br
+      br
+      select(name='category' disabled) Group
+        each category in categories
+          if (category._id.equals(recipe.category))
+            option(value=`${category._id}` selected)=category.name
+      br
+      br
+      input.btn.btn-danger.btn-lg(type='submit', value='Delete')

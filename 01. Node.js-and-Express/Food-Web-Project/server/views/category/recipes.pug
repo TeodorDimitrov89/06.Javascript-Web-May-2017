@@ -1,0 +1,11 @@
+extends ../main.pug
+block content
+  h2= `All Recipe by ${category.name}`
+    .row
+      each recipe in category.recipe
+        .col
+          img(src=`/${recipe.image}`)
+          h2=recipe.name
+          p.description=recipe.description
+          a.btn.btn-small.btn-warning(href=`/recipe/edit/${recipe._id}`)= 'Edit'
+          a.btn.btn-small.btn-danger(href=`/recipe/delete/${recipe._id}`)= 'Delete'        
