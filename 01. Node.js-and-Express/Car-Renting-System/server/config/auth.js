@@ -1,0 +1,20 @@
+// TODO: Add Authenticated Routes
+// Видео: 1:51 мин или слайд 33
+module.exports = {
+  isAuthenticated: (req, res, next) => {
+    if (req.isAuthenticated()) {
+      next()
+    } else {
+      res.render('users/login')
+    }
+  },
+  isInRole: (role) => {
+    return (req, res, next) => {
+      if (req.isAuthenticated() && req.user.roles.indexOf(role) > -1) {
+        next()
+      } else {
+        res.render('users/login')
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+extends ../main
+block content
+  table
+    thead
+      tr
+        th Model
+        th Image      
+        th Price per Day
+        th Color
+        th Days
+      each car in cars
+        tr
+          td=car.model
+          td=car.image
+          td=car.pricePerDay
+          td=car.color
+          td=car.days

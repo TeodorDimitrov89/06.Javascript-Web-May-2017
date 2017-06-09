@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+html(lang="en")
+head
+  meta(charset="UTF-8")
+  meta(name="viewport", content="width=device-width, initial-scale=1.0")
+  meta(http-equiv="X-UA-Compatible", content="ie=edge")
+  title Just Another Website
+  link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
+  link(rel="stylesheet", href="/styles/site.css" type='text/css')
+body
+  .container
+    ul.menu
+      li
+        a(href="/") Home
+      li.delimiter
+      li
+        a(href="/cars/all") All
+      if (currentUser)
+        li
+          span= `Welcome back, ${currentUser.username}`
+        li
+          a(href="/users/me") My Profile
+        li
+        if(isAdmin)
+          li
+            a(href="/cars/add") Add Cars
+        li
+          form#logout-form(method="post" action="/users/logout")
+          a(href="javascript:document.getElementById('logout-form').submit()") Logout
+      else
+        li
+          a(href="/users/register") Register
+        li
+          a(href="/users/login") Login
+    if (globalError)
+      h3= globalError
+    block content

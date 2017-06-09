@@ -1,0 +1,28 @@
+.container
+  ul.menu
+    li
+      a(href="/") Home
+    li
+      a(href="/about") About
+    li
+        a(href="/cars/all") All
+    li.delimiter
+    if (currentUser)
+      li
+        span= `Welcome back, ${currentUser.username}`
+      li
+        a(href="/users/me") My Profile
+      li
+      if(isAdmin)
+        li
+          a(href="/cars/add") Add Cars
+      li
+        form#logout-form(method="post" action="/users/logout")
+        a(href="javascript:document.getElementById('logout-form').submit()") Logout
+    else
+      li
+        a(href="/users/register") Register
+      li
+        a(href="/users/login") Login
+    if (globalError)
+      h3= globalError

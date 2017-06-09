@@ -1,0 +1,36 @@
+extends ../main.pug
+block content
+  h2 Register new user
+  form(method="post" action="/users/register")
+    div.form-group
+      label(for="username") Username
+      br
+    div.form-group
+      input(type="text" name="username" id="username" value=username)
+      br
+    div.form-group
+      label(for="password") Password
+      br
+    div.form-group
+      input(type="password" name="password" id="password")
+      br
+    div.form-group
+      label(for="confirm-password") Confirm Password
+      br
+    div.form-group
+      input.form-control(type="password" name="confirmPassword" id="confirm-password")
+      br
+    div.form-group
+      label(for="first-name") First Name
+      br
+    div.form-group
+      input(type="text" name="firstname" id="first-name" value=firstname)
+      br
+    div.form-group
+      label(for="last-name") Last Name
+      br
+    div.form-group
+      input(type="text" name="lastname" id="last-name" value=lastname)
+      br
+    div.form-group
+      input(type="submit" value="Create")

@@ -1,0 +1,22 @@
+extends ../main.pug
+block content
+  h2 Add a Car
+  form(method="post" action="/cars/add")
+    label(for="model") Model
+    br
+    input(type="text" name="model" id="model")
+    br
+    label(for="image") Image
+    br
+    input(type="url" name="image" id="image")
+    br
+    label(for="pricePerDay") Price per Day
+    br
+    input(type="number" name="pricePerDay" id="pricePerDay" min='1500' value='1500')
+    br
+    label(for="color") Color
+    br
+    input(type="text" name="color" id="color")
+    br
+    br
+    input(type="submit" value="Add Car")

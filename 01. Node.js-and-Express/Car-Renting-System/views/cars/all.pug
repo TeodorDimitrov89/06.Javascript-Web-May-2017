@@ -1,0 +1,39 @@
+extends ../main.pug
+block content
+  h2 All Available Cars
+  form(method='GET', action='/cars/all')
+    input(type='search', name='search')
+    input(type='submit', value='Search...')
+  each car in cars
+      if(!currentUser)
+        .container-cars
+          div='Model:' + car.model
+          img(src=car.image)
+          p='Price Per Day: ' + car.pricePerDay
+          p= 'Color: ' + car.color
+          p= 'Is Rented: ' + car.isRented
+      else
+        .container-cars
+          div='Model:' + car.model
+          img(src=car.image)
+          p='Price Per Day: ' + car.pricePerDay
+          p= 'Color: ' + car.color
+          p= 'Is Rented: ' + car.isRented
+          if(currentUser)
+            a(href=`/cars/rent/${car._id}`) Rent Car
+          if(isAdmin)
+            p= 'Rented by:' + car.rentedBy
+            a(href=`/cars/edit/${car._id}`) Edit Car
+  br
+  nav(aria-label='Page navigation example')
+  ul.pagination
+    - var i = 1;
+    if(hasPrevPage)
+      li.page-item
+        a.page-link(href=`/cars/all?page=${prevPage}$search=${search}`) Previous
+    while i <= pageCount
+      li.page-item
+        a.page-link(href=`/cars/all?page=${i}$search=${search}`)=i++
+    if(hasNextPage)
+      li.page-item
+        a.page-link(href=`/cars/all?page=${nextPage}$search=${search}`) Next
