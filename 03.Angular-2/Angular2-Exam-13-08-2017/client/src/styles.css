@@ -1,0 +1,24 @@
+/* You can add global styles to this file, and also import other style files */
+@import '../node_modules/toastr/build/toastr.css';
+.animal-container div img{
+  max-width: 100%; 
+  width: 250px;
+  min-height: 150px;
+  max-height: 150px;
+}
+
+.animal-container div {
+  /* margin-bottom: 50px; */
+  margin-right: 50px;
+  display: inline-block;
+  vertical-align: top;
+}
+.page {
+  display: block!important;
+}
+
+ .animal-image img{
+  width: 300px;
+  max-width: 350px
+  
+} 
