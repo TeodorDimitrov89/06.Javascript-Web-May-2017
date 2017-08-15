@@ -1,0 +1,32 @@
+<h2>Car Details</h2>
+<div>
+  <h2>Make: {{car.make}} - Model: {{car.model}} - {{car.likes}} Likes</h2>
+  <div>
+    <button (click)="like()">Like this car!</button>
+  </div>
+  <img class="car-image" *ngIf="car.image" [src]="car.image" [alt]="car.make" />
+</div>
+
+<div>
+  <label for="rating">Rating</label>
+  <select
+    name="rating"
+    id="rating" 
+    [(ngModel)]="review.rating">
+    <option *ngFor="let rating of [1,2,3,4,5]" [value]="rating">
+      {{rating}}
+    </option>
+  </select>
+  <br>
+  <textarea
+  rows="5" cols="30"
+  name="comment"
+  id="comment"
+  [(ngModel)]="review.comment">
+  </textarea>
+  <br>
+  <button (click)="addReview()">Add Review</button>
+  <div *ngFor="let review of carReviews">
+    <p>Rating: {{review.rating}} - <span *ngIf="review.comment">Comment: {{review.comment}} - </span>{{review.user}}</p>
+  </div>
+</div>

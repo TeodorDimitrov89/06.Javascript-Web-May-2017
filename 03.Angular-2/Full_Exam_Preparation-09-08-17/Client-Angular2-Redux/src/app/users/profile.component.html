@@ -1,0 +1,7 @@
+<h2>My profile</h2>
+<div>
+  <div *ngFor="let car of myCars">
+     {{car.make}} - {{car.model}}
+    <button (click)="delete(car.id)">Delete</button>
+  </div>
+</div>
