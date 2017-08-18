@@ -1,0 +1,97 @@
+<h1>Add Animal</h1>
+<form #addAnimalForm="ngForm" (submit)="addAnimal()">
+
+  <div class="form-container">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text"
+      id="name"
+      class="form-control"
+      [(ngModel)]="animal.name"
+      #name="ngModel"
+      name="name" required />
+      <span [hidden]="name.valid || name.pristine" class="invalid">
+          Name is required!
+      </span>
+  </div>
+
+  <div class="form-group">
+    <label for="age">Age</label>
+    <input type="number"
+      id="age"
+      class="form-control"
+      [(ngModel)]="animal.age"
+      #age="ngModel"
+      name="age" required/>
+      <span [hidden]="age.valid || age.pristine" class="invalid">
+          Age is required!
+      </span>
+  </div>
+
+  <div class="form-group">
+    <label for="color">Color</label>
+    <input type="text"
+      id="color"
+      class="form-control"
+      [(ngModel)]="animal.color"
+      #color="ngModel"
+      name="color" required/>
+      <span [hidden]="color.valid || color.pristine" class="invalid">
+          Color is required!
+      </span>
+  </div>
+
+  <div class="form-group">
+    <label for="type">Type</label>
+    <select
+      class="form-control"
+      id="type"
+      name="type"
+      [(ngModel)]="animal.type">
+    <option 
+      *ngFor="let animalType of animalTypes"
+      [value]="animalType">
+        {{animalType}}
+    </option>
+    </select>
+  </div>
+
+ <div class="form-group">
+    <label for="price">Price</label>
+    <input type="number"
+      id="price"
+      class="form-control"
+      [(ngModel)]="animal.price"
+      #price="ngModel"
+      name="price" required/>
+      <span [hidden]="price.valid || price.pristine" class="invalid">
+          Price is required!
+      </span>
+  </div>
+  <div class="form-group">
+    <label for="image">Image URL</label>
+    <input type="url"
+      id="image"
+      class="form-control"
+      [(ngModel)]="animal.image"
+      #image="ngModel"
+      name="image" required/>
+      <span [hidden]="image.valid || image.pristine" class="invalid">
+          Image URL is required!
+      </span>
+  </div>
+
+  <div class="form-group">
+    <label for="breed">Breed</label>
+    <input type="text"
+      id="breed"
+      class="form-control"
+      [(ngModel)]="animal.breed"
+      name="breed" />
+  </div>
+  <button
+    type="submit"
+    class="btn btn-success"
+    [disabled]="!addAnimalForm.form.valid">Submit</button>
+</div>
+</form>

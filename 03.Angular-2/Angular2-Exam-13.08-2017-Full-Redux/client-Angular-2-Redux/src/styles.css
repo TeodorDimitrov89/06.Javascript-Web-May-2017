@@ -1,0 +1,15 @@
+/* You can add global styles to this file, and also import other style files */
+ .form-container {
+  width: 500px;
+  margin: 0 auto;
+} 
+.invalid {
+  color: lightcoral;
+}
+
+.animal-image {
+  min-width: 200px;
+  width: 200px;
+  min-height: 150px;
+  max-width: 100%; 
+}

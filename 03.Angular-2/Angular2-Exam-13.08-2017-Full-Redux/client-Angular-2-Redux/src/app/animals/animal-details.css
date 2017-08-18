@@ -1,0 +1,17 @@
+.reaction-container,.comment-container {
+  width: 500px;
+  margin: 0 auto;
+}
+.reaction-container select, button.btn.btn-primary {
+  width: 100px;
+  display: inline-block;
+}
+textarea.form-control {
+  display: block;
+  margin-bottom: 10px;
+  resize: none;
+}
+.comment-container button.btn.btn-success {
+  padding: 5px;
+  width: 150px;
+}

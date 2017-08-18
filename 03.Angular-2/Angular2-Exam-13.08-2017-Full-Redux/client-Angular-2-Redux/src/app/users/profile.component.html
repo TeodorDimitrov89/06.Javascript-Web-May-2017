@@ -1,0 +1,7 @@
+<h3>My Profile</h3>
+<div *ngIf="myAnimals.length > 0">
+  <p *ngFor="let animal of myAnimals">
+    {{animal.name}} - {{animal.type}}
+    <button (click)="delete(animal.id)">Delete</button>
+  </p>
+</div>

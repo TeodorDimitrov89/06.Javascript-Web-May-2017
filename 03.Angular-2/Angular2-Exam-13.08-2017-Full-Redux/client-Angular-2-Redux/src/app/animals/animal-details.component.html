@@ -1,0 +1,36 @@
+<h2>Animal Details</h2>
+<div class="container">
+  <div class="reaction-container">
+    <select name="reaction" class="form-control" [(ngModel)]="reaction">
+      <option *ngFor="let userReaction of reactions" [value]="userReaction">
+        {{userReaction}}
+      </option>
+      </select>
+    <button class="btn btn-primary" (click)="userReaction()">Add reaction</button>
+  </div>
+  <h3>User reactions:</h3>
+  <p *ngFor="let reaction of userReactions">
+    {{reaction.type}} - {{reaction.count}}
+  </p>
+  <div class="row">
+    <div>
+      <h2>Name: {{animal.name}}</h2>
+      <img class="animal-image" *ngIf="animal.image" [src]="animal.image" [alt]="animal.name">
+      <p>Age: {{animal.age}}</p>
+      <p>Color: {{animal.color}}</p>
+      <p>Type: {{animal.type}}</p>
+      <p>Price: {{animal.price}}</p>
+
+    </div>
+    <div class="comment-container">
+      <textarea class="form-control" [(ngModel)]="commentMessage.message" rows="5" cols="2"></textarea>
+      <button class="btn btn-success" (click)="addComment()">Add Comment</button>
+      <div *ngIf="allComments.length > 0">
+        <h3>All Comments:</h3>
+        <p *ngFor="let comment of allComments">
+          {{comment.message}} - {{comment.user}}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
